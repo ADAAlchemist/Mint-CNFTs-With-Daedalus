@@ -6,13 +6,29 @@
 # Author: @ADAlchemist
 # !!! Use this script at your own risk !!!
 
+# Variables for the policy
+# policy expiration in seconds. 86400 = you have one day (24h) to fix things if mistakes happened in mint
+export expiry=86400
+
+# Variables for the NFT
+export realtokenname="ADAlchemist"
+export tokenname=$(echo -n $realtokenname | xxd -b -ps -c 80 | tr -d '\n')
+export ar_hash="dkXRrMWTxcj9eQ7XzuR9te-U450cSi8omn90uW64c2U"
+export website="https://github.com/ADAAlchemist"
+export description="Test mint created with Daedalous node"
+export name="ADAlchemist NFT token"
+
+export tokenamount="1"
+export fee="0"
+export output="0"
+
+
 # Check that wallet address has been provided as an argument
 echo "NFT mint script for Daedalous"
 if [ $# -eq 0 ]; then
     echo "usage: $0 [recipient wallet address]"
     exit 0
 fi
-
 
 # network
 # set this to preprod or mainnet
@@ -59,22 +75,6 @@ else
     echo "Make sure you have the full node wallet running and in sync."
     exit 0
 fi
-
-# Variables for the policy
-# policy expiration in seconds. 86400 = you have one day (24h) to fix things if mistakes happened in mint
-export expiry=86400
-
-# Variables for the NFT
-export realtokenname="ADAlchemist"
-export tokenname=$(echo -n $realtokenname | xxd -b -ps -c 80 | tr -d '\n')
-export ar_hash="dkXRrMWTxcj9eQ7XzuR9te-U450cSi8omn90uW64c2U"
-export website="https://github.com/ADAAlchemist"
-export description="Test mint created with Daedalous node"
-export name="ADAlchemist NFT token"
-
-export tokenamount="1"
-export fee="0"
-export output="0"
 
 # Payment address and keys
 if test -f "payment.addr" -a -f "payment.skey" -a -f "payment.vkey"; then
